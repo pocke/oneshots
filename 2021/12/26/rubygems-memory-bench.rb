@@ -10,7 +10,5 @@ def rss
 end
 
 N = 100
-
 mems = N.times.map { rss }.sort
-
 puts "avg: #{mems.sum.to_f / N}, mid: #{mems[N/2]}, min: #{mems.first}, max: #{mems.last}"
