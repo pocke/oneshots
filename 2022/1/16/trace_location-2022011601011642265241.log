@@ -1,0 +1,13 @@
+Logged by TraceLocation gem at 2022-01-16 01:47:21 +0900
+https://github.com/yhirano55/trace_location
+
+[Tracing events] C: Call, R: Return
+
+C /home/pocke/.rbenv/versions/trunk/lib/ruby/3.2.0/json/common.rb:557 [JSON.load]
+  C /home/pocke/.rbenv/versions/trunk/lib/ruby/3.2.0/json/common.rb:215 [JSON.parse]
+    C /home/pocke/.rbenv/versions/trunk/lib/ruby/3.2.0/json/common.rb:126 [JSON.create_id]
+    R /home/pocke/.rbenv/versions/trunk/lib/ruby/3.2.0/json/common.rb:128 [JSON.create_id]
+  R /home/pocke/.rbenv/versions/trunk/lib/ruby/3.2.0/json/common.rb:217 [JSON.parse]
+R /home/pocke/.rbenv/versions/trunk/lib/ruby/3.2.0/json/common.rb:572 [JSON.load]
+
+Result: {"foo"=>42}
