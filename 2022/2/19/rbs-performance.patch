@@ -1,0 +1,47 @@
+commit f9b8f49abe33de4948fb4ba22caf0cc6edb8357d
+Author: Masataka Pocke Kuwabara <kuwabara@pocke.me>
+Date:   Sat Feb 19 19:19:00 2022 +0900
+
+    Improve performance by calling TypeName#kind lazily
+
+diff --git a/lib/rbs/type_name.rb b/lib/rbs/type_name.rb
+index b845431..4f71a8a 100644
+--- a/lib/rbs/type_name.rb
++++ b/lib/rbs/type_name.rb
+@@ -2,22 +2,24 @@ module RBS
+   class TypeName
+     attr_reader :namespace
+     attr_reader :name
+-    attr_reader :kind
+ 
+     def initialize(namespace:, name:)
+       @namespace = namespace
+       @name = name
+-      @kind = case name.to_s[0,1]
+-              when /[A-Z]/
+-                :class
+-              when /[a-z]/
+-                :alias
+-              when "_"
+-                :interface
+-              else
+-                # Defaults to :class
+-                :class
+-              end
++    end
++
++    def kind
++      @kind ||= case name.to_s[0,1]
++                when /[A-Z]/
++                  :class
++                when /[a-z]/
++                  :alias
++                when "_"
++                  :interface
++                else
++                  # Defaults to :class
++                  :class
++                end
+     end
+ 
+     def ==(other)
